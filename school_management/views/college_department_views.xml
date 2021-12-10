@@ -1,0 +1,54 @@
+<odoo>
+    <record model="ir.ui.view" id="college_department_list">
+        <field name="name">college department list</field>
+        <field name="model">college.department</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="hod_id"/>
+                <field name="teacher_ids" widget="many2many_tags"/>
+                <field name="student_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="college_department_form">
+        <field name="name">college department form</field>
+        <field name="model">college.department</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                                <field name="hod_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Teacher">
+                            <group>
+                                <field name="teacher_ids"/>
+                            </group>
+                        </page>
+                        <page string="Student">
+                            <group>
+                                <field name="student_ids"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="college_department_action_window">
+        <field name="name">Departments</field>
+        <field name="res_model">college.department</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Departments" id="college_management_departments" parent="school_management_menu_root"
+              action="college_department_action_window"/>
+</odoo>

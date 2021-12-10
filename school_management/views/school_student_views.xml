@@ -1,0 +1,79 @@
+<odoo>
+    <record model="ir.ui.view" id="school_student_list">
+        <field name="name">School Student list</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="register_no"/>
+                <field name="name"/>
+                <field name="dob"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="class_name"/>
+                <field name="section"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="school_student_form">
+        <field name="name">School Student form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="register_no"/>
+                            <field name="name"/>
+                            <field name="class_name"/>
+                            <field name="department_id"/>
+                        </group>
+                        <group>
+                            <field name="dob"/>
+                            <field name="age"/>
+                            <field name="gender"/>
+                            <field name="section"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Parents">
+                            <group>
+                                <field name="parent_ids"/>
+                            </group>
+                        </page>
+                        <page string="Desc.">
+                            <group>
+                                <field name="description"/>
+                            </group>
+                        </page>
+                        <page string="Date of Join">
+                            <group>
+                                <field name="doj"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="school_student_graph" model="ir.ui.view">
+        <field name="name">school.student.view.graph</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <graph string="Student" sample="1">
+                <field name="class_name"/>
+            </graph>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="school_management_student_action_window">
+        <field name="name">Students</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">tree,form,graph</field>
+    </record>
+
+    <menuitem name="School Management" id="school_management_menu_root"/>
+    <menuitem name="Students" id="school_management_students" parent="school_management_menu_root"
+              action="school_management_student_action_window"/>
+</odoo>
