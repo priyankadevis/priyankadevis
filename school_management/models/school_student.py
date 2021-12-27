@@ -26,6 +26,7 @@ class SchoolStudent(models.Model):
     dob = fields.Date()
     age = fields.Integer(compute="_compute_age")
     rank = fields.Integer(default=10)
+    mark = fields.Float(default=100)
     doj = fields.Datetime("Date of Joining")
     description = fields.Text("About me")
     parent_ids = fields.Many2many('school.parent', ondelete='restrict')

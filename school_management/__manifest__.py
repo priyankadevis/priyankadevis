@@ -19,15 +19,13 @@
     'data': [
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
+        'data/data.xml',
         'views/college_department_views.xml',
         'views/school_student_views.xml',
         'views/school_parent_views.xml',
         'views/school_teacher_views.xml',
         'views/staff_information_views.xml',
         'views/templates.xml',
-    ],
-    'demo': [
-        'demo/demo.xml',
     ],
     'license': 'LGPL-3',
     'application': True,

@@ -8,6 +8,8 @@
                 <field name="name"/>
                 <field name="dob"/>
                 <field name="age"/>
+                <field name="rank"/>
+                <field name="mark" sum="Total mark"/>
                 <field name="gender"/>
                 <field name="class_name"/>
                 <field name="section"/>
@@ -26,6 +28,8 @@
                             <field name="register_no"/>
                             <field name="name"/>
                             <field name="class_name"/>
+                            <field name="rank"/>
+                            <field name="mark"/>
                             <field name="department_id"/>
                         </group>
                         <group>
@@ -61,16 +65,49 @@
         <field name="name">school.student.view.graph</field>
         <field name="model">school.student</field>
         <field name="arch" type="xml">
-            <graph string="Student" sample="1">
+            <graph string="Student">
                 <field name="class_name"/>
+                <field name="gender"/>
             </graph>
+        </field>
+    </record>
+
+    <record id="school_student_pivot" model="ir.ui.view">
+        <field name="name">school.student.view.pivot</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <pivot string="Student">
+                <field name="doj" interval="month" type="row"/>
+                <!-- <field name="class_name" type="row"/>-->
+                <field name="mark" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="school_student_search" model="ir.ui.view">
+        <field name="name">school.student.view.search</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="register_no"/>
+                <field name="department_id"/>
+                <field name="name"/>
+                <field name="class_name"/>
+                <field name="gender"/>
+
+                <filter string="Male" name="gender_male" domain="[('gender', '=', 'male')]"/>
+                <filter string="Female" name="gender_female" domain="[('gender', '=', 'female')]"/>
+
+                <filter string="Gender" name="groupby_gender" domain="[]" context="{'group_by': 'gender'}"/>
+                <filter string="Class" name="groupby_class_name" domain="[]" context="{'group_by': 'class_name'}"/>
+            </search>
         </field>
     </record>
 
     <record model="ir.actions.act_window" id="school_management_student_action_window">
         <field name="name">Students</field>
         <field name="res_model">school.student</field>
-        <field name="view_mode">tree,form,graph</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
     </record>
 
     <menuitem name="School Management" id="school_management_menu_root"/>

@@ -8,7 +8,6 @@
                 <field name="dob"/>
                 <field name="guardian" widget="boolean_toggle"/>
                 <field name="student_ids" widget="many2many_tags"/>
-
             </tree>
         </field>
     </record>
@@ -46,6 +45,7 @@
             </form>
         </field>
     </record>
+
 
     <record model="ir.actions.act_window" id="school_management_parent_action_window">
         <field name="name">Parents</field>

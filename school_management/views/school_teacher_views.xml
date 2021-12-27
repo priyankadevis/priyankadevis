@@ -14,10 +14,21 @@
     </record>
 -->
 
+    <record id="school_teacher_graph" model="ir.ui.view">
+        <field name="name">school.teacher.view.graph</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="gender"/>
+                <field name="department_id"/>
+            </graph>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="school_teacher_action_window">
       <field name="name">Teacher</field>
       <field name="res_model">school.teacher</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,graph</field>
     </record>
 
 <!--

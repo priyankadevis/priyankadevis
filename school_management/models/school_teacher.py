@@ -8,8 +8,11 @@ class SchoolTeacher(models.Model):
     _description = 'School Teacher'
 
     name = fields.Char()
-    department_id = fields.Many2one("college.department", required=True)
+    department_id = fields.Many2one("college.department", required=False)
     hod_of_dept_id = fields.One2many("college.department", "hod_id")
+    gender = fields.Selection([('male', "Male"),
+                               ('female', "Female"),
+                               ('other', "Other")], required=True)
 #     value = fields.Integer()
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #     description = fields.Text()
