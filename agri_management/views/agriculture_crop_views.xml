@@ -1,0 +1,53 @@
+<odoo>
+    <record model="ir.ui.view" id="agriculture_crop_list">
+        <field name="name">Agriculture Crop list</field>
+        <field name="model">agriculture.crop</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="crop_name"/>
+                <field name="crop_season"/>
+                <field name="crop_warehouse"/>
+                <field name="crop_stock_location"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="agriculture_crop_form">
+        <field name="name">Agriculture Crop form</field>
+        <field name="model">agriculture.crop</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="crop_name"/>
+                        <field name="crop_season"/>
+                        <field name="period_to_produce"/>
+                    </group>
+                    <notebook>
+                        <page string="process limit">
+                            <group>
+                                <field name= "starting_period"/>
+                                <field name= "ending_period"/>
+                            </group>
+                        </page>
+                        <page string="location"/>
+                        <page string="disease">
+                        <group>
+                            <field name="disease_cure"/>
+                        </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="agriculture_crop_action_window">
+        <field name="name">Crop</field>
+        <field name="res_model">agriculture.crop</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Agri" id="agri_management_menu_root"/>
+    <menuitem name="Crop" id="agriculture_management_crop" parent="agri_management_menu_root"
+              action="agriculture_crop_action_window"/>
+</odoo>
