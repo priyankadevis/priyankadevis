@@ -14,6 +14,7 @@
                 <field name="gender"/>
                 <field name="class_name"/>
                 <field name="section"/>
+                <field name="department_id"/>
             </tree>
         </field>
     </record>
@@ -74,6 +75,11 @@
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" options="{'post_refresh': 'always'}"/>
+                </div>
             </form>
         </field>
     </record>
@@ -143,6 +149,40 @@
         </field>
     </record>
 
+    <record id="school_student_calendar" model="ir.ui.view">
+        <field name="name">school.student.view.calendar</field>
+        <field name="model">school.student</field>
+        <field eval="2" name="priority"/>
+        <field name="arch" type="xml">
+            <calendar date_start="doj" event_limit="5" quick_add="False" mode="month">
+                <!--                date_stop="date_planned_finished"-->
+                <field name="register_no"/>
+                <field name="class_name"/>
+                <field name="rank"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="school_student_activity" model="ir.ui.view">
+        <field name="name">school.student.activity</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <activity string="Student">
+                <field name="id"/>
+                <field name="register_no"/>
+                <field name="gender"/>
+                <templates>
+                    <div t-name="activity-box">
+                        <div>
+                            <field name="name" display="full"/>
+                            <field name="rank" muted="1" display="full"/>
+                        </div>
+                    </div>
+                </templates>
+            </activity>
+        </field>
+    </record>
+
     <record id="school_student_search" model="ir.ui.view">
         <field name="name">school.student.view.search</field>
         <field name="model">school.student</field>
@@ -159,6 +199,15 @@
 
                 <filter string="Gender" name="groupby_gender" domain="[]" context="{'group_by': 'gender'}"/>
                 <filter string="Class" name="groupby_class_name" domain="[]" context="{'group_by': 'class_name'}"/>
+                <filter invisible="1" string="Late Activities" name="activities_overdue"
+                        domain="[('my_activity_date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                        help="Show all records which has next action date is before today"/>
+                <filter invisible="1" string="Today Activities" name="activities_today"
+                        domain="[('my_activity_date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter invisible="1" string="Future Activities" name="activities_upcoming_all"
+                        domain="[('my_activity_date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Warnings" name="activities_exception"
+                        domain="[('activity_exception_decoration', '!=', False)]"/>
             </search>
         </field>
     </record>
@@ -166,7 +215,7 @@
     <record model="ir.actions.act_window" id="school_management_student_action_window">
         <field name="name">Students</field>
         <field name="res_model">school.student</field>
-        <field name="view_mode">kanban,tree,form,pivot,graph</field>
+        <field name="view_mode">tree,kanban,form,calendar,activity,pivot,graph</field>
     </record>
 
     <menuitem name="School Management" id="school_management_menu_root"/>

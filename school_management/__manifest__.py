@@ -18,6 +18,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/security.xml',
         'data/ir_sequence_data.xml',
         'data/data.xml',
         'views/college_department_views.xml',

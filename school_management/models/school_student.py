@@ -9,6 +9,7 @@ from odoo import models, fields, api, _
 class SchoolStudent(models.Model):
     _name = 'school.student'
     _description = 'School Students'
+    _inherit = ['portal.mixin', 'mail.thread', 'mail.activity.mixin', 'utm.mixin']
     _order = "sequence"
 
     _sql_constraints = [
@@ -16,16 +17,16 @@ class SchoolStudent(models.Model):
     ]
 
     sequence = fields.Integer("Sequence", default=10)
-    name = fields.Char(copy=False)
+    name = fields.Char(copy=False, tracking=True)
     gender = fields.Selection([('male', "Male"),
                                ('female', "Female"),
                                ('other', "Other")], required=True)
-    department_id = fields.Many2one("college.department", required=True)
+    department_id = fields.Many2one("college.department", required=True, tracking=True)
     # , ondelete='restrict'
     register_no = fields.Char()
     class_name = fields.Char()
     section = fields.Char()
-    dob = fields.Date()
+    dob = fields.Date(tracking=True)
     age = fields.Integer(compute="_compute_age")
     rank = fields.Integer(default=10)
     fee = fields.Float(default=10000)

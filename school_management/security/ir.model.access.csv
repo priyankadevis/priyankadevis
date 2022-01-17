@@ -1,6 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-school_management.access_school_student,access_school_student,school_management.model_school_student,base.group_user,1,1,1,1
-school_management.access_school_teacher,access_school_teacher,school_management.model_school_teacher,base.group_user,1,1,1,1
-school_management.access_college_department,access_college_department,school_management.model_college_department,base.group_user,1,1,1,1
+school_management.access_school_student,access_school_student,school_management.model_school_student,,1,1,1,1
+school_management.access_school_teacher,access_school_teacher,school_management.model_school_teacher,base.group_user,1,1,1,0
+school_management.access_school_teacher,access_school_teacher,school_management.model_school_teacher,,1,1,1,0
+school_management.access_college_department,access_college_department,school_management.model_college_department,,1,1,1,1
 school_management.access_school_parent,access_school_parent,school_management.model_school_parent,base.group_user,1,1,1,1
-school_management.access_staff_information,access_staff_information,school_management.model_staff_information,base.group_user,1,1,1,1
+school_management.access_staff_information,access_staff_information,school_management.model_staff_information,,1,1,1,1

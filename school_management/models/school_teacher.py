@@ -13,6 +13,7 @@ class SchoolTeacher(models.Model):
     gender = fields.Selection([('male', "Male"),
                                ('female', "Female"),
                                ('other', "Other")], required=True)
+    user_id = fields.Many2one("res.users")
 #     value = fields.Integer()
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #     description = fields.Text()
