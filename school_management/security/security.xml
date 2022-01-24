@@ -23,27 +23,39 @@
         <field name="implied_ids" eval="[(4, ref('group_school_teacher'))]"/>
     </record>
 
-    <record id="school_student_see_all" model="ir.rule">
-        <field name="name">All Students</field>
-        <field name="model_id" ref="model_school_student" />
+    <record id="school_student_hod_see_all" model="ir.rule">
+        <field name="name">Students : All</field>
+        <field name="model_id" ref="model_school_student"/>
         <field name="domain_force">[(1,'=',1)]</field>
         <field name="groups" eval="[(4, ref('group_school_hod'))]"/>
     </record>
-    
+    <record id="school_student_teacher_own_department" model="ir.rule">
+        <field name="name">Students : Own Department</field>
+        <field name="model_id" ref="model_school_student"/>
+        <field name="domain_force">[('college_department_id', '=', user.college_department_id.id)]</field>
+        <field name="groups" eval="[(4, ref('group_school_teacher'))]"/>
+    </record>
+
+    <!--    <record id="school_student_student_see_own" model="ir.rule">-->
+    <!--        <field name="name">Students : My Record</field>-->
+    <!--        <field name="model_id" ref="model_school_student"/>-->
+    <!--        <field name="domain_force">[(1,'=',1)]</field>-->
+    <!--        <field name="groups" eval="[(4, ref('group_school_student'))]"/>-->
+    <!--    </record>-->
     <!--
     <record id="school_student_see_all" model="ir.rule">
         <field name="name">All Students</field>
         <field name="model_id" ref="model_school_student" />
-        <field name="domain_force">[('department_id','=','department_id')]</field>
+        <field name="domain_force">[('college_department_id','=','college_department_id')]</field>
         <field name="groups" eval="[(4, ref('group_school_teacher'))]"/>
     </record>
     -->
-    
-<!--    <record id="sale_order_report_personal_rule" model="ir.rule">-->
-<!--        <field name="name">Personal Orders Analysis</field>-->
-<!--        <field ref="model_sale_report" name="model_id"/>-->
-<!--        <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>-->
-<!--        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>-->
-<!--    </record>-->
+
+    <!--    <record id="sale_order_report_personal_rule" model="ir.rule">-->
+    <!--        <field name="name">Personal Orders Analysis</field>-->
+    <!--        <field ref="model_sale_report" name="model_id"/>-->
+    <!--        <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>-->
+    <!--        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>-->
+    <!--    </record>-->
 
 </odoo>

@@ -21,7 +21,7 @@ class SchoolStudent(models.Model):
     gender = fields.Selection([('male', "Male"),
                                ('female', "Female"),
                                ('other', "Other")], required=True)
-    department_id = fields.Many2one("college.department", required=True, tracking=True)
+    college_department_id = fields.Many2one("college.department", required=True, tracking=True)
     # , ondelete='restrict'
     register_no = fields.Char()
     class_name = fields.Char()

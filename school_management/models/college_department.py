@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import datetime
-import pytz
-
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class CollegeDepartment(models.Model):
@@ -12,5 +9,5 @@ class CollegeDepartment(models.Model):
 
     name = fields.Char("Department Name", required=True)
     hod_id = fields.Many2one("school.teacher", required=False)
-    teacher_ids = fields.One2many("school.teacher", "department_id")
-    student_ids = fields.One2many("school.student",  "department_id")
+    teacher_ids = fields.One2many("school.teacher", "college_department_id")
+    student_ids = fields.One2many("school.student", "college_department_id")

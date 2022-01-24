@@ -14,7 +14,7 @@
                 <field name="gender"/>
                 <field name="class_name"/>
                 <field name="section"/>
-                <field name="department_id"/>
+                <field name="college_department_id"/>
             </tree>
         </field>
     </record>
@@ -46,7 +46,7 @@
                                     <field name="class_name"/>
                                     <field name="rank"/>
                                     <field name="mark"/>
-                                    <field name="department_id"/>
+                                    <field name="college_department_id"/>
                                 </group>
                                 <group>
                                     <field name="dob"/>
@@ -189,7 +189,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="register_no"/>
-                <field name="department_id"/>
+                <field name="college_department_id"/>
                 <field name="name"/>
                 <field name="class_name"/>
                 <field name="gender"/>

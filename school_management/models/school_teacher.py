@@ -8,17 +8,17 @@ class SchoolTeacher(models.Model):
     _description = 'School Teacher'
 
     name = fields.Char()
-    department_id = fields.Many2one("college.department", required=False)
+    active = fields.Boolean(default=True)
+    college_department_id = fields.Many2one("college.department")
     hod_of_dept_id = fields.One2many("college.department", "hod_id")
     gender = fields.Selection([('male', "Male"),
                                ('female', "Female"),
                                ('other', "Other")], required=True)
     user_id = fields.Many2one("res.users")
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+
+    @api.onchange('college_department_id')
+    def onchange_college_department_id(self):
+        for record in self:
+            print(record)
+            print(record.college_department_id)
+            record.user_id.college_department_id = record.college_department_id

@@ -18,7 +18,7 @@
         <field name="arch" type="xml">
             <graph>
                 <field name="gender"/>
-                <field name="department_id"/>
+                <field name="college_department_id"/>
             </graph>
         </field>
     </record>
