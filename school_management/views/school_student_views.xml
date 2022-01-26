@@ -217,8 +217,4 @@
         <field name="res_model">school.student</field>
         <field name="view_mode">tree,kanban,form,calendar,activity,pivot,graph</field>
     </record>
-
-    <menuitem name="School Management" id="school_management_menu_root"/>
-    <menuitem name="Students" id="school_management_students" parent="school_management_menu_root"
-              action="school_management_student_action_window"/>
 </odoo>

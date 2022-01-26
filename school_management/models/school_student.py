@@ -34,6 +34,9 @@ class SchoolStudent(models.Model):
     doj = fields.Datetime("Date of Joining")
     description = fields.Text("About me")
     parent_ids = fields.Many2many('school.parent', ondelete='restrict')
+    type = fields.Selection([
+        ('school', 'School'),
+        ('college', 'College')])
     state = fields.Selection([
         ('draft', 'Applied'),
         ('open', 'Confirmed'),
@@ -88,7 +91,7 @@ class SchoolStudent(models.Model):
         #     print(search_read.get('sequence'))
         #     print(search_read['name'])
         #     print(search_read.get('test'))
-        print('----------')
+
         browse_ids = self.browse([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])
         print(browse_ids)
         filtered_ids = browse_ids.exists().filtered(lambda r: r.gender == self.gender)

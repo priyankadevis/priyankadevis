@@ -2,13 +2,13 @@
     <record model="ir.ui.view" id="school_teacher_list">
         <field name="name">school.teacher.view.list</field>
         <field name="model">school.teacher</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="gender"/>
-          <field name="user_id"/>
-        </tree>
-      </field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
     </record>
 
 
@@ -24,25 +24,25 @@
     </record>
 
     <record model="ir.actions.act_window" id="school_teacher_action_window">
-      <field name="name">Teacher</field>
-      <field name="res_model">school.teacher</field>
-      <field name="view_mode">tree,form,graph</field>
+        <field name="name">Teacher</field>
+        <field name="res_model">school.teacher</field>
+        <field name="view_mode">tree,form,graph</field>
     </record>
 
-<!--
-    <record model="ir.actions.server" id="school_management.action_server">
-      <field name="name">school_management server</field>
-      <field name="model_id" ref="model_school_management_school_management"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
-    -->
+    <!--
+        <record model="ir.actions.server" id="school_management.action_server">
+          <field name="name">school_management server</field>
+          <field name="model_id" ref="model_school_management_school_management"/>
+          <field name="state">code</field>
+          <field name="code">
+            action = {
+              "type": "ir.actions.act_window",
+              "view_mode": "tree,form",
+              "res_model": model._name,
+            }
+          </field>
+        </record>
+        -->
     <menuitem name="Teacher" id="school_teacher" parent="school_management_menu_root"
               action="school_teacher_action_window"/>
 </odoo>
