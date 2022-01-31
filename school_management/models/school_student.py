@@ -36,7 +36,7 @@ class SchoolStudent(models.Model):
     parent_ids = fields.Many2many('school.parent', ondelete='restrict')
     type = fields.Selection([
         ('school', 'School'),
-        ('college', 'College')])
+        ('college', 'College')], required=True)
     state = fields.Selection([
         ('draft', 'Applied'),
         ('open', 'Confirmed'),

@@ -12,6 +12,7 @@
                 <field name="rank"/>
                 <field name="mark" sum="Total mark"/>
                 <field name="gender"/>
+                <field name="type"/>
                 <field name="class_name"/>
                 <field name="section"/>
                 <field name="college_department_id"/>
@@ -49,10 +50,11 @@
                                     <field name="college_department_id"/>
                                 </group>
                                 <group>
-                                    <field name="dob"/>
-                                    <field name="age"/>
                                     <field name="gender"/>
+                                    <field name="age"/>
+                                    <field name="dob"/>
                                     <field name="section"/>
+                                    <field name="type"/>
                                 </group>
                             </group>
                         </div>
@@ -212,9 +214,16 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="school_management_student_action_window">
-        <field name="name">Students</field>
+    <record model="ir.actions.act_window" id="school_management_college_student_action_window">
+        <field name="name">College Students</field>
         <field name="res_model">school.student</field>
+        <field name="domain">[('type', '=', 'college')]</field>
+        <field name="view_mode">tree,kanban,form,calendar,activity,pivot,graph</field>
+    </record>
+    <record model="ir.actions.act_window" id="school_management_school_student_action_window">
+        <field name="name">School Students</field>
+        <field name="res_model">school.student</field>
+        <field name="domain">[('type', '=', 'school')]</field>
         <field name="view_mode">tree,kanban,form,calendar,activity,pivot,graph</field>
     </record>
 </odoo>
