@@ -1,0 +1,31 @@
+<odoo>
+    <template id="listing">
+        <ul>
+            <li t-foreach="objects" t-as="object">
+                <a t-attf-href="#{ root }/objects/#{ object.id }">
+                    <t t-esc="object.display_name"/>
+                </a>
+            </li>
+        </ul>
+    </template>
+
+    <template id="object">
+        <h1>
+            <t t-esc="object.display_name"/>
+        </h1>
+        <dl>
+            <table>
+                <t t-foreach="object._fields" t-as="field">
+                    <tr>
+                        <td>
+                            <t t-esc="field"/>:
+                        </td>
+                        <td>
+                            <t t-esc="object[field]"/>
+                        </td>
+                    </tr>
+                </t>
+            </table>
+        </dl>
+    </template>
+</odoo>

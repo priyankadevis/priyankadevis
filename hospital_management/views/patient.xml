@@ -1,0 +1,155 @@
+<odoo>
+    <record model="ir.ui.view" id="hospital_patient_list">
+        <field name="name">Hospital Patient list</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient_name"/>
+                <field name="address"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="dob"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="hospital_patient_form">
+        <field name="name">Hospital Patient form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="patient_name"/>
+                            <field name="age"/>
+                        </group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="blood_group"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Personal">
+                            <group>
+                                <field name="address"/>
+                                <field name="marital_status"/>
+                                <field name="phn_no"/>
+                            </group>
+                        </page>
+                        <page string="Disease">
+                        </page>
+                        <page string="Appointment">
+                            <group>
+                                <field name="appointment_date"/>
+                                <field name="appointment_end"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="hospital_patient_graph">
+        <field name="name">Hospital Patient graph</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="blood_group"/>
+                <field name="gender"/>
+            </graph>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="hospital_patient_search">
+        <field name="name">Hospital Patient search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="patient_name"/>
+                <field name="address"/>
+                <field name="age"/>
+                <field name="gender"/>
+
+                <filter string="Male" name="gender_male" domain="[('gender', '=', 'male')]"/>
+                <filter string="Female" name="gender_female" domain="[('gender', '=', 'female')]"/>
+
+                <filter string="age" name="groupby_age" domain="[]" context="{'group_by': 'age'}"/>
+                <filter string="Gender" name="groupby_gender" domain="[]" context="{'group_by': 'gender'}"/>
+            </search>
+        </field>
+    </record>
+    <record id="hospital_patient_pivot" model="ir.ui.view">
+        <field name="name">Hospital Patient pivot</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <pivot string="patient">
+                <field name="marital_status" type="row"/>
+                <field name="age" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+    <record id="hospital_patient_kanban" model="ir.ui.view">
+        <field name="name">Hospital Patient kanban</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="patient_name"/>
+                <field name="address"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="dob"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                            </div>
+                            <!--                        <div class="o_kanban_image_fill_left o_kanban_image_full" t-attf-style="background-image: url(#{kanban_image('hospital.patient', 'avatar_128', patient.raw_value)})" role="img"/>-->
+                            <ul>
+                                <div class="o_kanban_record_top mb16">
+                                    <li>
+                                        <field name="patient_name"/>
+                                    </li>
+                                </div>
+                                <li>
+                                    <field name="gender"/>
+                                </li>
+                            </ul>
+                            <div class="o_dropdown_kanban dropdown">
+                                <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown"
+                                   data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.deletable">
+                                        <a role="menuitem" type="delete" class="dropdown-item">Delete</a>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!--    <record id="hospital_patient_activity" model="ir.ui.view">-->
+    <!--        <field name="name">Hospital Patient activity</field>-->
+    <!--        <field name="model">hospital.patient</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <activity string="hospital">-->
+    <!--                <templates>-->
+    <!--                    <div t-name="activity-box">-->
+    <!--                    </div>-->
+    <!--                </templates>-->
+    <!--            </activity>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <record model="ir.actions.act_window" id="hospital_patient_action_window">
+        <field name="name">Patient</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form,graph,search,pivot,kanban</field>
+    </record>
+
+    <menuitem name="Hospital" id="hospital_management_menu_root"/>
+    <menuitem name="Patient" id="hospital_management_patient" parent="hospital_management_menu_root"
+              action="hospital_patient_action_window"/>
+</odoo>
